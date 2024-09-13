@@ -1,0 +1,93 @@
+<form>
+    <div class="row">
+      <!-- izquierda -->
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="nombre">Nombre:</label>
+          <input type="text" class="form-control" id="nombre" [(ngModel)]="nuevoProducto.nombre" name="nombre" required
+          placeholder="Ingrese nombre del producto">
+        </div>
+        <div class="form-group">
+          <label for="pn">PN:</label>
+          <input type="text" class="form-control" id="pn" [(ngModel)]="nuevoProducto.pn" name="pn" required
+          placeholder="Ingrese nombre del PN">
+        </div>
+        <div class="form-group">
+          <label for="des">Descripcion:</label>
+          <input type="text" class="form-control" id="des" [(ngModel)]="nuevoProducto.descripcion" name="des" required
+          placeholder="Ingrese descripcion del producto">
+        </div>
+  
+        <div class="form-group">
+          <label for="stock">Stock:</label>
+          <input type="number" class="form-control no-spin" id="stock" [(ngModel)]="nuevoProducto.stock" name="stock" required min="1">
+        </div>
+        <div class="form-group">
+          <label for="pre">Precio:</label>
+          <input type="number" class="form-control" id="pre" [(ngModel)]="nuevoProducto.precio" name="pre" required min="1">
+        </div>
+  
+        <div class="form-group">
+          <label for="im">Imagen:</label>
+          <input type="file" class="form-control" id="im" name="im" (change)="onFileChange($event)" multiple required>
+        </div>
+      </div>
+  
+      <!-- derecha -->
+      <div class="col-md-6">
+  
+        <!-- PARTE 1 -->
+        <!-- MARCA -->
+        <div class="form-group">
+          <label for="marca">Marca:</label>
+          <div class="input-group">
+            <select id="marca" class="form-control" [(ngModel)]="MarcaSelect" name="marca" (change)="buscarSubM()">
+              <option *ngFor="let marca of Marcas" [value]="marca.id"> {{ marca.id }} | {{ marca.nombre }} </option>
+            </select>
+          </div>
+        </div>
+        <!-- CATEGORIA MARCA -->
+        <div class="form-group">
+          <label for="categoria_marca">Categoría Marca:</label>
+          <div class="input-group">
+            <select id="categoria_marca" class="form-control" [(ngModel)]="nuevoProducto.id_categoriamarca" name="categoria_marca" >
+              <option *ngFor="let categoria of CategoriaMarca" [value]="categoria.id"> {{ categoria.nombre }} </option>
+            </select>
+          </div>
+        </div>
+        <!-- PARTE 2 -->
+        <!-- CATEGORIA -->
+        <div class="form-group">
+          <label for="categoria">Categoria:</label>
+          <div class="input-group">
+            <select id="categoria" class="form-select" [(ngModel)]="CategoriaSelect" name="categoria" (change)="buscarSubC()" >
+              <option *ngFor="let c of Categoria" [value]="c.id">{{c.id}} | {{ c.nombre }}</option>
+            </select>
+          </div>
+        </div>
+        <!-- SUBCATEGORIA -->
+        <div class="form-group">
+          <label for="sub">Sub Categoria:</label>
+          <div class="input-group">
+            <select id="sub" class="form-select" [(ngModel)]="nuevoProducto.id_subcategoria" name="sub" >
+              <option *ngFor="let sc of Subcategoria" [value]="sc.id">{{ sc.nombre }}</option>
+            </select>
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label for="gc">Garantia Cliente:</label>
+          <input type="number" class="form-control" id="gc" [(ngModel)]="nuevoProducto.garantia_cliente" name="gc" required min="0">
+        </div>
+        <div class="form-group">
+          <label for="gt">Garantia Total:</label>
+          <input type="number" class="form-control" id="gt" [(ngModel)]="nuevoProducto.garantia_total" name="gt" required min="0">
+        </div>
+  
+      </div>
+    </div>
+  
+    <button type="submit" class="btn btn-primary full" (click)="guardarProductos()">Guardar</button>
+  
+  </form>
+  

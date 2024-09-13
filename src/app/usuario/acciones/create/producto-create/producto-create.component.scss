@@ -1,0 +1,19 @@
+.form-group {
+    margin-bottom: 20px; //espacio input
+}
+
+.full{
+    width:100%; //ancho submit
+}
+
+/* Ocultar controles de número en Chrome, Safari y Opera */
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Ocultar controles de número en Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}

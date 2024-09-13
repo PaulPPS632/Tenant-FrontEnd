@@ -1,0 +1,125 @@
+<div class="container">
+
+    <h1 class="d-flex justify-content-center">Inventario Categoria / SubCategoria</h1>
+
+    <!--categoria-->
+    <ng-template #modalCategoria let-modal>
+        <div class="modal-header d-flex justify-content-center align-items-center">
+          <h2 class="modal-title">Añadir Categoría</h2>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label for="nombreCategoria">Nombre:</label>
+                  <div class="input-group">
+                    <input type="text" class="form-control" id="nombreCategoria" [(ngModel)]="nuevaCategoria.nombre" name="nombre">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="descripcionCategoria">Descripción:</label>
+                  <div class="input-group">
+                    <input type="text" class="form-control" id="descripcionCategoria" [(ngModel)]="nuevaCategoria.descripcion" name="descripcion">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <button type="button" class="btn btn-primary full" (click)="guardarCategoria()">Guardar Categoría</button>
+          </form>
+        </div>
+    </ng-template>
+
+    <!--subcategoria-->
+    <ng-template #modalSubCategoria let-modal>
+        <div class="modal-header d-flex justify-content-center align-items-center">
+            <h2 class="modal-title">Añadir SubCategoria</h2>
+        </div>
+  
+        <div class="modal-body">
+            <form>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="nombre">Nombre:</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="nombre" [(ngModel)]="nuevaSubcategoria.nombre" name="nombre">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="descripcion">Descripción:</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="descripcion" [(ngModel)]="nuevaSubcategoria.descripcion" name="descripcion">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <button type="button" class="btn btn-primary full" (click)="guardarSubCategoria()">Guardar Subcategoria</button>
+            </form>
+        </div>
+    </ng-template>
+    
+
+</div>
+
+<br>
+
+<div class="container">
+    <main>
+        <div class="row g-5">
+            <div class="col-md-6">    
+                <div class="row g-2">
+                    <h2>Tabla Categoria</h2>
+                    <button type="button" class="btn btn-primary grupo" (click)="abrirModal(modalCategoria)">Crear Categoria</button>
+
+                    <table class="table table-hover">
+                        <thead>
+                          <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Descripcion</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr *ngFor="let c of Categoria" (click)="seleccionarCategoria(c.id)">
+                            <th scope="row">{{c.id}}</th>
+                            <td>{{c.nombre}}</td>
+                            <td>{{c.descripcion}}</td>
+                          </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="row g-2">
+                    <h2>Tabla SubCategoria</h2>
+                    <button type="button" class="btn btn-primary grupo" (click)="abrirModal(modalSubCategoria)">Crear SubCategoria</button>
+                    <div class="row g-2">
+                        <table class="table table-hover">
+                            <thead>
+                              <tr>
+                                <th scope="col">ID</th>
+                                <th scope="col">Nombre</th>
+                                <th scope="col">Descripcion</th>
+                                <th scope="col">Acción</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr *ngFor="let sc of Subcategoria">
+                                <th scope="row">{{sc.id}}</th>
+                                <td>{{sc.nombre}}</td>
+                                <td>{{sc.descripcion}}</td>
+                                <td>
+                                    <button class="btn btn-danger" (click)="eliminarSubCategoria(sc.id)">Eliminar</button>
+                                </td>
+                              </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>

@@ -1,0 +1,99 @@
+<div class="container">
+
+  <h1 class="d-flex justify-content-center">Inventario Productos</h1>
+
+  <div class="d-flex justify-content-center">
+    <button type="button" class="btn btn-primary grupo" (click)="abrirModal(modalContent)">Añadir Producto</button>
+    <button type="button" class="btn btn-primary grupo" (click)="irBuscar()">Buscar Producto</button>
+  </div>
+
+  <ng-template #modalContent let-modal>
+    <div class="modal-header d-flex justify-content-center align-items-center">
+      <h2 class="modal-title">Añadir Producto</h2>
+    </div>
+
+    <div class="modal-body">
+      <app-producto-create></app-producto-create>
+    </div>
+  </ng-template>
+  <ng-template #modalPedido let-modal>
+    <div class="modal-header d-flex justify-content-center align-items-center">
+        <h2 class="modal-title">Realizar Pedido</h2>
+    </div>
+
+    <div class="modal-body">
+        <form>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                      <label for="nombre">Nombre Producto:</label>
+                      <div class="input-group">
+                          <input type="text" class="form-control" id="nombre" [(ngModel)]="ProductoNombrePedidoSelect" name="nombre" disabled>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="cantidad" class="form-label">Cantidad:</label>
+                      <div class="input-group">
+                        <input type="text" class="form-control" id="nombre" [(ngModel)]="ProductoCantidadPedidoSelect" name="cantidad">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="nota" class="form-label">Nota:</label>
+                      <div class="input-group">
+                        <input type="text" class="form-control" id="nombre" [(ngModel)]="ProductoNotaPedidoSelect" name="nota">
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-4">
+            <button type="button" class="btn btn-primary full" (click)="RegistrarPedido()">Realizar Pedido</button>
+        </form>
+    </div>
+</ng-template>
+  <!-- TABLA CRUD -->
+   <div style="max-height: 85vh; overflow-y: auto; margin: auto;">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <!--<th scope="col">ID (Serie Producto)</th>-->
+          <th scope="col">Nombre Producto</th>
+          <th scope="col">PN</th>
+          <th scope="col">Descripcion</th>
+          <th scope="col">Precio</th>
+          <th scope="col">Stock</th>
+          <th scope="col">Marca</th>
+          <th scope="col">Categoria Marca</th>
+          <th scope="col">G.Cliente</th>
+          <th scope="col">G.Total</th>
+          <th scope="col">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let p of productos">
+          <!--<th scope="row">{{p.id}}</th>-->
+          <td>{{p.nombre}}</td>
+          <td>{{p.pn}}</td>
+          <td>{{p.descripcion}}</td>
+          <td>{{p.precio | currency:'S/. '}}</td>
+          <td>{{p.stock}}</td>
+          <td>{{p.marca}}</td>
+          <td>{{p.categoriamarca}}</td>
+          <td>{{p.garantia_cliente}}</td>
+          <td>{{p.garantia_total}}</td>
+          <!--
+          <td *ngFor="let ima of p.imageurl" *ngIf="expression">
+            <img src="{{ima}}" alt="" style="width: 100px;">
+          </td>
+          -->
+          <td>
+            <!--<button type="button" class="btn btn-warning me-2"(click)="editCategoria(p.id)">Editar</button>-->
+            <button type="button" class="btn btn-danger me-1" (click)="eliminarProducto(p.id)">Eliminar</button>
+            <button type="button" class="btn btn-primary me-1" *ngIf="p.stock<20" (click)="abrirModalPedido(modalPedido, p.id ,p.nombre)">Stockear</button>
+          </td>
+
+        </tr>
+      </tbody>
+  </table>
+   </div>
+  
+</div>

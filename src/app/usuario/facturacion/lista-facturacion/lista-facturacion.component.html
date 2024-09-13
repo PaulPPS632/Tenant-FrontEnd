@@ -1,0 +1,30 @@
+<div class="container">
+    <div style="max-height: 85vh; overflow-y: auto; margin: auto;">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <!--<th scope="col">ID (Serie Producto)</th>-->
+              <th scope="col">FECHA</th>
+              <th scope="col">USUARIO</th>
+              <th scope="col">DOCUMENTO</th>
+              <th scope="col">RUC/DNI/ETC</th>
+              <th scope="col">DENOMINACION</th>
+              <th scope="col">TOTAL</th>
+              <th scope="col">ACCION</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let v of Ventas">
+              <!--<th scope="row">{{p.id}}</th>-->
+              <td>{{v.fecha_emision[2]}}/{{v.fecha_emision[1]}}/{{v.fecha_emision[0]}}</td>
+              <td>{{v.usuario.name}}</td>
+              <td>{{v.correlativo.documento}}</td>
+              <td>{{v.cliente.documento}}</td>
+              <td>{{v.cliente.nombre}}</td>
+              <td>{{v.total | currency:'S/. '}}</td>
+              <td><button type="button" class="btn btn-primary me-1">opciones</button></td>
+            </tr>
+          </tbody>
+      </table>
+       </div>
+</div>

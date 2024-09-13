@@ -1,0 +1,73 @@
+.example-spacer {
+    flex: 1 1 auto;
+}
+
+//barra superior
+mat-toolbar {
+    background: #1E1E1E;
+    color: white;
+}
+
+mat-sidenav-container{
+    height: calc(100vh - 65px); //altura completa - 65px
+}
+
+mat-sidenav{
+    //margin: 16px;
+    width: 220px;
+    border-right: none;
+    background: #1E1E1E;
+    color: white;
+    border-top-right-radius: 5px; // Radio superior derecho
+    border-bottom-right-radius: 5px; // Radio inferior derecho
+    padding: 16px; //separacion
+    text-align: center;
+}
+
+.icon{
+    margin-top: 16px;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-color: white;
+}
+
+.nombre{
+    margin-top: 8px;
+    font-weight: normal;
+}
+
+.rol{
+    margin-top: 2px;
+    font-size: 0.9rem;
+    color:gray;
+}
+
+mat-divider{
+    background:white;
+}
+
+.menu-button{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    font-size: 1rem;
+    mat-icon,span,a{
+        margin-right: 8px;
+        color:white;
+    }
+}
+.menu-button:hover{
+    mat-icon,span,a{
+        margin-right: 8px;
+        color:rgb(43, 121, 194);
+    }
+}
+mat-sidenav-content{
+    height: calc(100vh - 65px);
+}
+
+a{
+    text-decoration: none;
+}

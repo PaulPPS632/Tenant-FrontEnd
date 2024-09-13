@@ -1,0 +1,128 @@
+<div class="container">
+
+    <h1 class="d-flex justify-content-center">Inventario Marca / Categoria Marca</h1>
+
+    <!--marca-->
+    <ng-template #modalMarca let-modal>
+        <div class="modal-header d-flex justify-content-center align-items-center">
+          <h2 class="modal-title">Añadir Marca</h2>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label for="nombreMarca">Nombre:</label>
+                  <div class="input-group">
+                    <input type="text" class="form-control" id="nombreMarca" [(ngModel)]="nuevaMarca.nombre" name="nombreMarca">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <button type="button" class="btn btn-primary full" (click)="guardarMarca()">Guardar Marca</button>
+          </form>
+        </div>
+    </ng-template>
+
+    <!--categoriamarca-->
+    <ng-template #modalCategoriaMarca let-modal>
+        <div class="modal-header d-flex justify-content-center align-items-center">
+            <h2 class="modal-title">Añadir Categoria Marca</h2>
+        </div>
+  
+        <div class="modal-body">
+            <form>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="nombreCategoriaMarca">Nombre:</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="nombreCategoriaMarca" [(ngModel)]="nuevaCategoriaMarca.nombre" name="nombreCategoriaMarca">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <button type="button" class="btn btn-primary full" (click)="guardarCategoriaMarca()">Guardar Categoria Marca</button>
+            </form>
+        </div>
+    </ng-template>
+
+    <!--editar: categoriamarca-->
+    <ng-template #modalEditarCategoriaMarca let-modal>
+      <div class="modal-header d-flex justify-content-center align-items-center">
+        <h2 class="modal-title">Editar Categoria Marca</h2>
+      </div>
+      <div class="modal-body">
+        <!--
+        <form (ngSubmit)="guardarCambios()">
+          <div class="form-group">
+            <label for="nombreCategoriaMarca">Nombre:</label>
+            <input type="text" class="form-control" id="nombreCategoriaMarca" [(ngModel)]="categoria.nombre" name="nombreCategoriaMarca">
+          </div>
+          <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+        </form>
+        -->
+      </div>
+    </ng-template>
+
+
+  </div>
+
+<br>
+
+<div class="container">
+    <main>
+        <div class="row g-5">
+            <div class="col-md-6">    
+                <div class="row g-2">
+                    <h2>Tabla Marca</h2>
+                    <button type="button" class="btn btn-primary grupo" (click)="abrirModal(modalMarca)">Crear Marca</button>
+
+                    <table class="table table-hover">
+                        <thead>
+                          <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Nombre</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr *ngFor="let c of Marca" (click)="seleccionarMarca(c.id)">
+                            <th scope="row">{{c.id}}</th>
+                            <td>{{c.nombre}}</td>
+                          </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="row g-2">
+                    <h2>Tabla Categoria Marca</h2>
+                    <button type="button" class="btn btn-primary grupo" (click)="abrirModal(modalCategoriaMarca)">Crear Categoria Marca</button>
+                    <div class="row g-2">
+                        <table class="table table-hover">
+                            <thead>
+                              <tr>
+                                <th scope="col">ID</th>
+                                <th scope="col">Nombre</th>
+                                <th scope="col">Acción</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr *ngFor="let sc of CategoriaMarca">
+                                <th scope="row">{{sc.id}}</th>
+                                <td>{{sc.nombre}}</td>
+                                <td>
+                                    <button class="btn btn-danger espacio" (click)="eliminarCategoriaMarca(sc.id)">Eliminar</button>
+                                    <button class="btn btn-warning" (click)="editarCategoriaMarca(sc.id)">Editar</button>
+                                </td>
+                              </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>

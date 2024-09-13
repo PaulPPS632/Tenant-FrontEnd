@@ -1,0 +1,48 @@
+
+<div *ngIf="registrado">
+  <div class="form-signin">
+    <div class="form-floating">
+      <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" [(ngModel)]="email" name="email">
+      <label for="floatingInput" >Usuario</label>
+    </div>
+    <div class="form-floating">
+      <input type="password" class="form-control" id="floatingPassword" placeholder="Password" [(ngModel)]="password" name="password">
+      <label for="floatingPassword">Contraseña</label>
+    </div>
+  </div>
+</div>
+
+<div class="container loading" *ngIf="isLoading">
+  <mat-spinner></mat-spinner>
+  <h1>Generando PreCarga de Datos</h1>
+</div>
+
+<mat-tab-group *ngIf="!isLoading">
+  <mat-tab label="Suscribirse">
+
+    <label for="susb" class="form-label">Codigo de Subscripción:</label>
+    <input type="text" class="form-control" id="susb" placeholder="Ingrese codigo..." [(ngModel)]="codigo" name="susb">
+
+    <button class="btn btn-primary btn-lg" type="button" (click)="Registrar()">Crear</button>
+  </mat-tab>
+
+  <mat-tab label="Nuevo Servicios">
+
+    <label for="serv" class="form-label">Nombre del Nuevo Servicio:</label>
+    <div class="input-group">
+      <input type="text" class="form-control" id="serv" placeholder="Ingrese nuevo servicio..." [(ngModel)]="tenantname" name="serv">
+    </div>
+
+    <label for="tipoNegocio" class="form-label">Tipo de Negocio</label>
+    <div class="input-group">
+      <select class="form-select" id="tipoNegocio" [(ngModel)]="tipoNegocio" name="tipoNegocio">
+        <option value="electronica" selected>electronica</option>
+        <option value="textil">textil</option>
+        <option value="ninguno">ninguno</option>
+      </select>
+    </div>
+
+    <button class="btn btn-primary btn-lg" type="button"(click)="Registrar()">Crear</button>
+
+  </mat-tab>
+</mat-tab-group>

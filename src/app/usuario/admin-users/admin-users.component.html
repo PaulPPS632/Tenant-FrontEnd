@@ -1,0 +1,53 @@
+
+
+<ng-template #modalContent let-modal>
+  <div class="modal-header d-flex justify-content-center align-items-center">
+    <h2 class="modal-title">Asignar Rol</h2>
+  </div>
+
+  <div class="modal-body">
+    <app-asignar-rol [usuario]="usuarioSelect"></app-asignar-rol>
+  </div>
+</ng-template>
+
+<div class="container">
+  <div class="container" style="margin: auto;">
+    <h2>Informacion de Usuario Actual</h2>
+    <img class="icon mat-elevation-z8" src={{UsuarioDueno?.picture}} alt="usuario">
+    <p><span style="font-weight: bold;">Nombre: </span>{{UsuarioDueno?.name}}</p>
+    <p><span style="font-weight: bold;">Email: </span>{{UsuarioDueno?.email}}</p>
+    <p><span style="font-weight: bold;">Rol: </span>{{UsuarioDueno?.rol?.nombre}}</p>
+    <p><span style="font-weight: bold;">Tipo de Negocio: </span>{{UsuarioDueno?.tiponegocio}}</p>
+    <p><span style="font-weight: bold;">Nombre de Servicio: </span>{{UsuarioDueno?.tenantName}}</p>
+    <p><span style="font-weight: bold;">Codigo Subscripcion: </span>{{UsuarioDueno?.tenantId}}</p>
+  </div>
+  <hr class="my-4">
+  <div>
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Nombre Usuario</th>
+            <th scope="col">Email</th>
+            <th scope="col">Rol</th>
+            <th scope="col">Eliminar</th>
+            <th scope="col">Asignar</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of usuarios">
+            <th scope="row">{{user.id}}</th>
+            <td>{{user.name}}</td>
+            <td>{{user.email}}</td>
+            <td>{{user.rol?.nombre}}</td>
+            <td>
+              <!--<button type="button" class="btn btn-warning me-2"(click)="editCategoria(p.id)">Editar</button>-->
+              <button type="button" class="btn btn-danger me-2" (click)="eliminar(user)">Eliminar</button>
+              
+            </td>
+            <td><button type="button" class="btn btn-primary grupo" (click)="abrirModal(modalContent, user)">Admitir</button></td>
+          </tr>
+        </tbody>
+    </table>
+  </div>
+</div>

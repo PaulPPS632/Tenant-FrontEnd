@@ -1,0 +1,246 @@
+<div class="container">
+    <main>
+      <div class="py-5 text-center">
+        <h2>Ingresos: Compra</h2>
+      </div>
+  
+      <div class="row g-5">
+        <!--Info: parte 1-->
+
+        <div class="col-md-6">
+            <div class="d-flex justify-content-between align-items-center">
+                <h2 class="mb-3"><b>Información</b></h2>
+                <div class="icon-container" (click)="abrirModal(modalContent)">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="30px" fill="#000000"><path d="m382-80-18.67-126.67q-17-6.33-34.83-16.66-17.83-10.34-32.17-21.67L178-192.33 79.33-365l106.34-78.67q-1.67-8.33-2-18.16-.34-9.84-.34-18.17 0-8.33.34-18.17.33-9.83 2-18.16L79.33-595 178-767.67 296.33-715q14.34-11.33 32.34-21.67 18-10.33 34.66-16L382-880h196l18.67 126.67q17 6.33 35.16 16.33 18.17 10 31.84 22L782-767.67 880.67-595l-106.34 77.33q1.67 9 2 18.84.34 9.83.34 18.83 0 9-.34 18.5Q776-452 774-443l106.33 78-98.66 172.67-118-52.67q-14.34 11.33-32 22-17.67 10.67-35 16.33L578-80H382Zm55.33-66.67h85l14-110q32.34-8 60.84-24.5T649-321l103.67 44.33 39.66-70.66L701-415q4.33-16 6.67-32.17Q710-463.33 710-480q0-16.67-2-32.83-2-16.17-7-32.17l91.33-67.67-39.66-70.66L649-638.67q-22.67-25-50.83-41.83-28.17-16.83-61.84-22.83l-13.66-110h-85l-14 110q-33 7.33-61.5 23.83T311-639l-103.67-44.33-39.66 70.66L259-545.33Q254.67-529 252.33-513 250-497 250-480q0 16.67 2.33 32.67 2.34 16 6.67 32.33l-91.33 67.67 39.66 70.66L311-321.33q23.33 23.66 51.83 40.16 28.5 16.5 60.84 24.5l13.66 110Zm43.34-200q55.33 0 94.33-39T614-480q0-55.33-39-94.33t-94.33-39q-55.67 0-94.5 39-38.84 39-38.84 94.33t38.84 94.33q38.83 39 94.5 39ZM480-480Z"/></svg>
+                </div>
+            </div>
+
+            <ng-template #modalContent let-modal>
+                <div class="modal-header d-flex justify-content-center align-items-center">
+                <h2 class="modal-title">Editar Tipado</h2>
+                </div>
+                <div class="modal-body">
+                    <div class="col-sm-12">
+                        <label for="tipoCondSelec" class="form-label">Tipo Condicion:</label>
+                        <div class="input-group">
+                            <select class="form-select" id="tipoCondSelec" [(ngModel)]="tipoCondSelec" name="tipoCondSelec">
+                                <option *ngFor="let item of tipoCondicion" [value]="item.id"> {{item.id}} | {{ item.descripcion }}</option>
+                            </select>
+                            <button class="btn btn-primary ms-2" type="button">Nuevo</button>
+                        </div>
+                    </div>
+                    
+                    <div class="col-sm-12 mt-3">
+                        <label for="tipoPagoSelec" class="form-label">Tipo Pago:</label>
+                        <div class="input-group">
+                            <select class="form-select" id="tipoPagoSelec" [(ngModel)]="tipoPagoSelec" name="tipoPagoSelec">
+                                <option *ngFor="let item of tipoPago" [value]="item.id"> {{item.id}} | {{ item.descripcion }}</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="col-sm-12 mt-3">
+                        <label for="fecha-emision" class="form-label">Fecha de Emision</label>
+                        <div class="input-group">
+                            <input class="form-control" placeholder="yyyy-mm-dd" 
+                                id="fecha-emision"
+                                ngbDatepicker #e="ngbDatepicker" 
+                                [(ngModel)]="fechaEmision" name="fechaEmision">
+                            <button class="btn btn-primary ms-2" (click)="e.toggle()" type="button">📅</button>
+                        </div>
+                    </div>
+                    
+                    <div class="col-sm-12 mt-3">
+                        <label for="fecha-venci" class="form-label">Fecha de Vencimiento</label>
+                        <div class="input-group">
+                            <input class="form-control" placeholder="yyyy-mm-dd" 
+                                id="fecha-venci"
+                                ngbDatepicker #v="ngbDatepicker" 
+                                [(ngModel)]="fechaVencimiento" name="fechaVencimiento">
+                            <button class="btn btn-primary ms-2" (click)="v.toggle()" type="button">📅</button>
+                        </div>
+                    </div>
+                    
+                    <div class="col-sm-12 mt-3">
+                        <label for="fecha-pago" class="form-label">Fecha de Pago</label>
+                        <div class="input-group">
+                            <input class="form-control" id="fecha-pago" placeholder="yyyy-mm-dd" ngbDatepicker #p="ngbDatepicker" [(ngModel)]="fechaPago" name="fechaPago">
+                            <button class="btn btn-primary ms-2" (click)="p.toggle()" type="button">📅</button>
+                        </div>
+                    </div>
+                    
+                    <div class="col-sm-12 mt-3">
+                        <label for="formaPago" class="form-label">Forma de Pago</label>
+                        <div class="input-group">
+                            <select class="form-select" id="formaPago" [(ngModel)]="formaPago" name="formaPago" required>
+                            <option value="1" selected>Forma 1</option>
+                            <option value="2">Forma 2</option>
+                            <option value="3">Forma 3</option>
+                            </select>
+                        </div>  
+                    </div>
+                    
+                    <div class="col-md-12 mt-3">
+                        <label class="form-label" for="tipoMoneda">Tipo Moneda:</label>
+                        <div class="input-group">
+                            <select id="tipoMoneda" class="form-select" [(ngModel)]="tipoMonedaSelec" name="tipoMoneda" >
+                                <option *ngFor="let item of tipoMoneda" [value]="item.id">{{ item.id}} | {{ item.nombre }}</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="col-sm-12 mt-3">
+                        <label for="tipoCambio" class="form-label">Tipo de Cambio</label>
+                        <input type="text" class="form-control" id="tipoCambio" placeholder="Tipo de Cambio" [(ngModel)]="tipoCambio" name="tipoCambio">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" (click)="modal.dismiss('Cancel click')">Cerrar</button>
+                </div>
+            </ng-template>
+            <ng-template #modalInsertProductos let-modal>
+                <h2 style="font-weight: 800; margin: auto;">Ingresar Series</h2>
+                <p>{{nombreproductoSeleccionado}}</p>
+                <label for="serie" class="form-label">series</label>
+                <div class="col-sm-3 input-group" style="margin: auto; max-height: 300px;">
+                    <input type="text" class="form-control" id="insertseries" name="serie" [(ngModel)]="serie" (keyup.enter)="agregarProductoDetalle()">
+                    <input type="text" [value]="" disabled >
+                </div>
+                <hr class="my-4">
+                <div  style="max-height: 300px; overflow-y: auto; margin: auto;">
+                    <table style="margin: auto; width: 100%;">
+                      <thead>
+                        <tr>
+                          <th>Serie</th>
+                          <th>Seleccionar</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let series of SeriesProducto">
+                          <td>{{series}}</td>
+                          <td><button type="button" class="btn me-2 btn-danger" (click)="SeleccionarSeriesProducto(series)">Eliminar</button></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+            </ng-template>
+            <div class="row g-2">
+                <div class="col-sm-10">
+                    <label for="co" class="form-label">Documento</label>
+                    <input type="text" class="form-control" id="co" name="correlativo" [(ngModel)]="documento">
+                </div>
+            </div>
+            
+            <div class="row g-2">
+                <div class="col-sm-12 mt-3">
+                    <label for="entidad" class="form-label">Proveedor: (Id/Nombre)</label>
+                    <div class="input-group col-sm-12">
+                        <input type="text" class="form-control" id="entidad" (input)="buscarCliente($event)" name="entidad" [(ngModel)]="entidad" placeholder="Buscar por proveedor...">
+                        <select class="form-select" id="entidadS" required (change)="ElegirEntidad()" [(ngModel)]="selectedEntidad" name="selectedEntidad">
+                            <option *ngFor="let item of filtroEntidad" [value]="item.documento">
+                                {{ item.documento }} | {{ item.nombre}}
+                            </option>
+                        </select>
+                        <button class="btn btn-primary ms-2" type="button">Nuevo</button>
+                    </div>
+                </div>
+                        
+                <div class="col-12">
+                    <label for="nota" class="form-label">Nota (opcional)</label>
+                    <input type="text" class="form-control" id="nota" placeholder="..." [(ngModel)]="nota" required>
+                </div>
+                <!--
+                <div class="col-sm-6">
+                    <label for="serie" class="form-label">Serie Producto</label>
+                    <input type="text" class="form-control" id="serie" placeholder="Ingrese la Serie" [(ngModel)]="serie" name= "serie" required (keyup.enter)="buscarProducto()">
+                </div>
+                -->
+                <div class="col-sm-12 mt-3">
+                    <label for="n_producto" class="form-label">Agregar Producto</label>
+                    <div class="input-group col-sm-12">
+                        <input type="text" class="form-control" id="entidad" (input)="buscarProducto($event)" name="entidad" placeholder="Buscar por producto...">
+                        <select class="form-select" id="n_producto" [(ngModel)]="selectedProducto" name="selectedProducto" required (ngModelChange)="ElegirSeries($event,modalInsertProductos)">
+                            <option value="" disabled selected>Elegir...</option>
+                            <option *ngFor="let marcaitem of listaProductos" [value]="marcaitem.id">  
+                                {{marcaitem.nombre}}
+                            </option>
+                        </select>
+                        <button class="btn btn-primary ms-2" type="button">Nuevo</button>
+                    </div>
+                </div>
+
+            </div>
+
+            <hr class="my-4">
+    
+            <button class="w-100 btn btn-primary btn-lg" type="submit" (click)="guardarProductos()" >Continuar con la venta</button>
+
+        </div>
+
+        <!--Info: parte 2-->
+        <div class="col-md-6">
+            <div class="row g-2">
+
+                <!--Productos lista -->
+
+                <hr class="my-4">
+
+                <div class="col-sm-12 mt-3">
+                    <table class="table table-hover">
+                        <thead>
+                          <tr>
+                            <th>Cantidad</th>
+                            <th>Nombre</th>
+                            <th>P. Unit</th>
+                            <th>P. Total</th>
+                            <!--<th>Acción</th>-->
+                          </tr>
+                        </thead>
+                        <tbody *ngIf="ventaData.detalles && ventaData.detalles.length > 0">
+                          <tr *ngFor="let producto of ventaData.detalles">
+                            <td>{{ producto.cantidad }}</td>
+                            <td>{{ producto.nombre }}</td>
+                            <td>{{ producto.precio_unitario | currency:'S/. ' }}</td>
+                            <td>{{ producto.precio_total | currency:'S/. '}}</td>
+                            <!-- <td>
+                                <button class="btn btn-danger btn-sm" (click)="removerProducto(producto)">Eliminar</button>
+                            </td> -->
+                          </tr>  
+                        </tbody>
+                    </table>
+                </div>
+
+                <hr class="my-4">
+
+                <!-- informacion pagar -->
+
+                <div class="col-sm-12">
+                    <label for="gra" class="form-label">Gravada (sin IGV)</label>
+                    <input type="text" class="form-control" id="gra" [value]="totalGravada | currency:'S/. '" disabled>
+                </div>
+                
+                <div class="col-sm-12">
+                    <label for="igv" class="form-label">Impuesto IGV (18%)</label>
+                    <input type="text" class="form-control" id="igv" [value]="igv | currency:'S/. '" disabled>
+                </div>
+                
+                <div class="col-sm-12">
+                    <label for="pagar" class="form-label">Total Pagar</label>
+                    <input type="text" class="form-control" id="pagar" [value]="totalPagar | currency:'S/. '" disabled>
+                </div>
+
+            </div>
+        </div>
+        </div>
+    </main>
+</div>
+  
+
+<footer class="my-5 pt-5 text-muted text-center text-small">
+    <p class="mb-1">&copy; 2024 Empresa Fryzán</p>
+    <ul class="list-inline">
+      <li class="list-inline-item"><a href="#">Privacidad</a></li>
+      <li class="list-inline-item"><a href="#">Terminos</a></li>
+      <li class="list-inline-item"><a href="#">Soporte</a></li>
+    </ul>
+</footer>

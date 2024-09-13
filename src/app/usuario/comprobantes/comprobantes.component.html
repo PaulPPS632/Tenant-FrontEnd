@@ -1,0 +1,15 @@
+<div class="container mt-5">
+    <h2 style="margin: auto; text-align: center; font-size: 30px; font-weight: bold;">Comprobantes</h2>
+    <div class="col-sm-3 mt-3">
+        <label for="comprobante" class="form-label" style="font-weight: bold;">Comprobante:</label>
+        <div class="input-group">
+            <select class="form-select" name="comprobante" id="comprobante" [(ngModel)]="ListaSeleccionada">
+                <option value="salidas">Salidas</option>
+                <option value="ingresos">Ingresos</option>
+            </select>
+        </div>
+    </div>
+    <hr class="my-4">
+    <app-lista-ingresos *ngIf="!flag"></app-lista-ingresos>
+    <app-lista-facturacion *ngIf="flag"></app-lista-facturacion>
+</div>

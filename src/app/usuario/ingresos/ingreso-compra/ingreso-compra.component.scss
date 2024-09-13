@@ -1,0 +1,13 @@
+.icon-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.2s;
+}
+  
+.icon-container:hover {
+    transform: rotate(90deg);
+    cursor: pointer;
+}
+
+  

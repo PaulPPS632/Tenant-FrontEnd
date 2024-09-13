@@ -1,0 +1,77 @@
+<mat-toolbar>
+    <button mat-icon-button (click)="sidenav.toggle()">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span>Empresa Fryzán</span>
+</mat-toolbar>
+  
+  <mat-sidenav-container class="example-container">
+    <mat-sidenav #sidenav>
+      <img class="icon mat-elevation-z8" src="https://cdn-icons-png.flaticon.com/512/6326/6326055.png" alt="usuario">
+      <h4 class="nombre">{{user.name}}</h4>
+      <p class="rol">{{user.email}}</p>
+      <p class="rol">{{user.rol?.nombre}}</p>
+      <mat-divider></mat-divider>
+  
+      <button mat-button class="menu-button">
+        <mat-icon>grade</mat-icon>
+        <span><a [routerLink]="['usuario/inicio']">Escritorio</a></span>
+      </button>
+  
+      <button mat-button class="menu-button">
+        <mat-icon>inventory_2</mat-icon>
+        <span><a [routerLink]="['usuario/productos/list']">Inventario</a></span>
+      </button>
+  
+      <button mat-button class="menu-button">
+        <mat-icon>fact_check</mat-icon>
+        <span><a [routerLink]="['usuario/facturacion/ventas']">Facturacion</a></span>
+      </button>
+
+      <button mat-button class="menu-button">
+        <mat-icon>fact_check</mat-icon>
+        <span><a [routerLink]="['usuario/facturacion/ingresos']">Ingresos</a></span>
+      </button>
+
+      <button mat-button class="menu-button">
+        <mat-icon>chevron_right</mat-icon>
+        <span><a [routerLink]="['usuario/productos/subs/categoria']">Categoria</a></span>
+      </button>
+
+      <button mat-button class="menu-button">
+        <mat-icon>chevron_right</mat-icon>
+        <span><a [routerLink]="['usuario/productos/subs/marca']">Marca</a></span>
+      </button>
+  
+      <mat-divider></mat-divider>
+      <button *ngIf="buscaprivilegio('usuarios')" mat-button class="menu-button"  > 
+        <mat-icon>fact_check</mat-icon>
+        <span><a [routerLink]="['usuario/comprobantes']">Comprobante</a></span>
+      </button>
+      <button *ngIf="buscaprivilegio('usuarios')" mat-button class="menu-button"  > 
+        <mat-icon>fact_check</mat-icon>
+        <span><a [routerLink]="['usuario/pedidos']">Pedidos</a></span>
+      </button>
+      <mat-divider></mat-divider>
+      <button *ngIf="buscaprivilegio('usuarios')" mat-button class="menu-button"  > 
+        <mat-icon>supervisor_account</mat-icon>
+        <span><a [routerLink]="['usuario/admin']">Usuarios</a></span>
+      </button>
+      
+      <button mat-button class="menu-button" (click)="Salir()" > 
+        <mat-icon>logout</mat-icon>
+        <span>Salir</span>
+      </button>
+  
+    </mat-sidenav>
+  
+    <mat-sidenav-content>
+      
+      <!-- altura con sombra-->
+      <div>
+        <router-outlet></router-outlet>
+      </div>
+  
+    </mat-sidenav-content>
+  
+  </mat-sidenav-container>

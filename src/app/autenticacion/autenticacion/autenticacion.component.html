@@ -1,0 +1,31 @@
+<body class="text-center">
+    
+    <main class="form-signin">
+      <form (ngSubmit)="login()">
+        <img class="icon logo mat-elevation-z8 mt-5 mb-4" src="https://www.asesora2.cl/servicios/76-home_default/sistema-boleta-y-factura-electronica-anual.jpg" alt="usuario">
+        <h1 class="h3 mb-3 fw-normal">Empresa Fryzán</h1>
+    
+        <div class="form-floating">
+          <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" [(ngModel)]="email" name="email">
+          <label for="floatingInput" >Usuario</label>
+        </div>
+        <div class="form-floating">
+          <input type="password" class="form-control" id="floatingPassword" placeholder="Password" [(ngModel)]="password" name="password">
+          <label for="floatingPassword">Contraseña</label>
+        </div>
+    
+        <div class="checkbox mb-3">
+          <label>
+            <input type="checkbox" value="remember-me"> Recordarme
+          </label>
+        </div>
+        <button class="btn btn-primary btn-lg btn-espacio" type="submit">Iniciar Sesión</button>
+        <button class="btn btn-secondary btn-lg" (click)="registrar(true)">Registrarse</button>
+        <p class="mt-5 mb-3 text-muted">&copy; 2024 Empresa Fryzán</p>
+      </form>
+      
+      <app-redirectaccountgoogle></app-redirectaccountgoogle>
+      <app-accountgoogle *ngIf="componentToShow == 'protected'"></app-accountgoogle>
+    </main>
+</body>
+
